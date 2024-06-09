@@ -1,0 +1,49 @@
+.game-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the game items horizontally */
+  }
+  
+  .game-item {
+    width: 30%;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px; /* Adjusted left margin for centering */
+  }
+  
+  .game-item:last-child {
+    margin-right: 0; /* Remove margin from the last game item in a row */
+  }
+  
+  .game-item a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .game-item img {
+    width: 80%; /* Adjusted image width */
+    border-radius: 5px;
+  }
+  
+  .game-item h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .game-item p {
+    margin-top: 5px;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .game-item {
+      width: 45%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .game-item {
+      width: 100%;
+    }
+  }
+  
