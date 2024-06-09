@@ -16,6 +16,7 @@ const App = () => {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/game/:id" element={<GameDetail />} /> {/* Make sure this route is defined */}
                 </Routes>
             </div>
         </Router>

@@ -14,3 +14,15 @@ export const fetchGames = async () => {
     }
 };
 
+export const fetchGameById = async (id) => {
+    try {
+        const { data, error } = await supabase.from('games').select('*').eq('id', id).single();
+        if (error) {
+            throw error;
+        }
+        return data;
+    } catch (error) {
+        return null;
+    }
+};
+
