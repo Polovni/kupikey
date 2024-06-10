@@ -12,6 +12,13 @@
     align-items: center;
 }
 
+.header-logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
 .header-logo img {
     height: 50px; /* Adjust the height as needed */
     margin-right: 1rem;
