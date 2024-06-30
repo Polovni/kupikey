@@ -1,3 +1,32 @@
+.cart-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart {
+    width: 60%;
+    max-width: 720px; 
+}
+
+.summary {
+    width: 35%;
+    max-width: 400px; 
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #E8E8E8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 320px;
+}
+
 .cart-list {
     display: flex;
     flex-direction: column;
@@ -10,8 +39,12 @@
     gap: 1rem;
     border: 1px solid #ccc;
     padding: 1rem;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    border-radius: 8px;
+    background-color: #E8E8E8;
+    flex: 0 0 auto;
+    width: 100%; 
+    max-width: 680px;
+    overflow: hidden;
 }
 
 .cart-item img {
@@ -24,19 +57,63 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    flex-grow: 1;
+    overflow: hidden; 
+}
+
+.cart-item-details h3,
+.cart-item-details p {
+    margin: 0;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
 .remove-from-cart-button {
-    padding: 0.5rem 1rem;
-    background-color: #dc3545;
-    color: white;
+    background: none;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    color: #dc3545;
     font-size: 1rem;
-    margin-top: 0.5rem;
 }
 
 .remove-from-cart-button:hover {
-    background-color: #c82333;
+    text-decoration: underline;
+}
+
+.remove-from-cart-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.checkout-button {
+    background-color: #ff4500;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.checkout-button:hover {
+    background-color: #e03d00;
+}
+
+.continue-shopping {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.continue-shopping:hover {
+    text-decoration: underline;
+}
+
+.summary p {
+    margin: 10px 0;
+    font-size: 1rem;
 }
