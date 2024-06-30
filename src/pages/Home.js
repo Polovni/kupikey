@@ -9,7 +9,9 @@ const Home = () => {
     useEffect(() => {
         const getGames = async () => {
             try {
+                console.log("Fetching games in useEffect...");
                 const gamesData = await fetchGames();
+                console.log("Setting games data:", gamesData);
                 setGames(gamesData);
             } catch (error) {
                 console.error('Error fetching games:', error);
@@ -28,7 +30,7 @@ const Home = () => {
     };
 
     const calculateDiscountedPrice = (price, discount) => {
-        const discountedPrice = price * (1 - discount);
+        const discountedPrice = price * (1- discount);
         return discountedPrice.toFixed(2); // Round to 2 decimal places
     };
 

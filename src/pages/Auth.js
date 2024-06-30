@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { supabase } from "../supabaseClient";
-import backgroundImage from "../assets/images/background.jpeg";
-import backgroundImage2 from "../assets/images/r6_1.png";
 import backgroundImage3 from "../assets/images/background3.jpg";
 import logo from "../assets/images/Image 3.png";
-import google from "../assets/images/google.png";
-
-
 import "./Auth.css";
 
 const Auth = () => {
@@ -16,15 +11,29 @@ const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
 
   const handleAuth = async () => {
-    if (isSignUp) {
-      const { error } = await supabase.auth.signUp({ email, password });
-      if (error) setError(error.message);
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) setError(error.message);
+    setError(""); // Clear previous errors
+
+    try {
+      if (isSignUp) {
+        const { data, error } = await supabase.auth.signUp({ email, password });
+        if (error) {
+          console.error('Sign-up error:', error.message);
+          setError(error.message);
+        } else {
+          console.log('Sign-up successful:', data);
+        }
+      } else {
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) {
+          console.error('Sign-in error:', error.message);
+          setError(error.message);
+        } else {
+          console.log('Sign-in successful:', data);
+        }
+      }
+    } catch (error) {
+      console.error("Unexpected error during authentication:", error);
+      setError("An unexpected error occurred. Please try again.");
     }
   };
 
