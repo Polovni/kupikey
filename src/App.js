@@ -2,25 +2,31 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/common/Header';
 import Home from './pages/Home';
-import Auth from './pages/Auth'; // Import the Auth component which contains both Login and SignUp
+import Auth from './pages/Auth'; // Ensure this is correctly imported
 import GameDetail from './pages/GameDetail';
 import Cart from './pages/Cart';
 import Payment from './pages/Payment';
-import Profile from './pages/Profile';
-import ProtectedRoute from './components/ProtectedRoute';
+import Profile from './pages/Profile'; // Ensure this is correctly imported
+import ProtectedRoute from './components/ProtectedRoute'; // Ensure this is correctly imported
+import { CartProvider } from './context/CartContext';
 
 const App = () => {
     return (
-        <Router>
-            <div>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path='/login' element={<Auth />} />
-                    <Route path="/game/:id" element={<GameDetail />} /> {/* Make sure this route is defined */}
-                </Routes>
-            </div>
-        </Router>
+        <CartProvider>
+            <Router>
+                <div>
+                    <Header />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Auth />} />
+                        <Route path="/signup" element={<Auth />} />
+                        <Route path="/game/:id" element={<GameDetail />} />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                    </Routes>
+                </div>
+            </Router>
+        </CartProvider>
     );
 };
 

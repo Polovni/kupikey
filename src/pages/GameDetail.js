@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchGameById } from '../services/gameService';
 import './GameDetails.css';
+import { CartContext } from '../context/CartContext';
 
 const GameDetail = () => {
-    const { id } = useParams(); // Get the game ID from URL parameters
+    const { id } = useParams();
     const [game, setGame] = useState(null);
+    const { addToCart, notification } = useContext(CartContext);
 
     useEffect(() => {
         const getGame = async () => {
@@ -24,6 +26,7 @@ const GameDetail = () => {
 
     return (
         <div className="game-detail-container">
+            {notification && <div className="notification">{notification}</div>}
             <div className="game-header">
                 <h2>{game.name}</h2>
                 <img src={game.image_url} alt={`${game.name} cover`} />
@@ -31,8 +34,9 @@ const GameDetail = () => {
                     <div className="price">${game.price}</div>
                     <div className="discount">{game.discount * 100}% off</div>
                 </div>
+                <button onClick={() => addToCart(game)} className="add-to-cart-button">Add to Cart</button>
             </div>
-            <div className="game-info">    
+            <div className="game-info">
                 <p><br></br><br></br><span>Platform:</span> {game.platform}</p>
                 <p><span>Game Edition:</span> {game.game_edition}</p>
                 <p><span>Description:</span> {game.description}</p>

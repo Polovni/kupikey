@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { supabase } from "../supabaseClient";
 import backgroundImage3 from "../assets/images/background3.jpg";
 import logo from "../assets/images/Image 3.png";
@@ -9,6 +10,8 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleAuth = async () => {
     setError(""); // Clear previous errors
@@ -21,6 +24,7 @@ const Auth = () => {
           setError(error.message);
         } else {
           console.log('Sign-up successful:', data);
+          navigate('/login'); // Redirect to login page after sign-up
         }
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
@@ -29,6 +33,7 @@ const Auth = () => {
           setError(error.message);
         } else {
           console.log('Sign-in successful:', data);
+          navigate('/'); // Redirect to home page after sign-in
         }
       }
     } catch (error) {
