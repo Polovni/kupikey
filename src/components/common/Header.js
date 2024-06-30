@@ -6,7 +6,7 @@ import logo from '../../assets/images/Image 3.png';
 import './Header.css';
 import { CartContext } from '../../context/CartContext';
 
-const Header = () => {
+const Header = ({ searchQuery, setSearchQuery }) => {
     const { cart } = useContext(CartContext); // Access cart from CartContext
 
     const scrollToSection = (id) => {
@@ -33,7 +33,13 @@ const Header = () => {
                 <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('nintendo'); }}>NINTENDO</Link></li>
             </ul>
             <div className="header-right">
-                <input type="text" placeholder="Search..." className="search-bar" />
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    className="search-bar"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
                 <Link to="/cart" className="icon-link">
                     <FontAwesomeIcon icon={faShoppingCart} className="icon" />
                     {cart.length > 0 && <span className="cart-count">{cart.length}</span>}

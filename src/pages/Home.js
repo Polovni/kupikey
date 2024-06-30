@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchGames } from '../services/gameService';
-import './Home.css'
+import './Home.css';
 
-const Home = () => {
+const Home = ({ searchQuery }) => {
     const [games, setGames] = useState([]);
+    const [filteredGames, setFilteredGames] = useState([]);
 
     useEffect(() => {
         const getGames = async () => {
             try {
-                console.log("Fetching games in useEffect...");
                 const gamesData = await fetchGames();
-                console.log("Setting games data:", gamesData);
                 setGames(gamesData);
+                setFilteredGames(gamesData); // Initially, display all games
             } catch (error) {
                 console.error('Error fetching games:', error);
             }
@@ -21,16 +21,26 @@ const Home = () => {
         getGames();
     }, []);
 
-    const featuredGames = games.slice(0, 6); // First 6 games
+    useEffect(() => {
+        if (searchQuery) {
+            setFilteredGames(games.filter(game =>
+                game.name && game.name.toLowerCase().includes(searchQuery.toLowerCase())
+            ));
+        } else {
+            setFilteredGames(games); // Reset to all games if search query is empty
+        }
+    }, [searchQuery, games]);
+
+    const featuredGames = filteredGames.slice(0, 6); // First 6 games
     const platformGames = {
-        PC: games.filter(game => game.platform === 'PC').slice(0, 6),
-        PlayStation: games.filter(game => game.platform === 'PlayStation').slice(0, 6),
-        Xbox: games.filter(game => game.platform === 'Xbox').slice(0, 6),
-        Switch: games.filter(game => game.platform === 'Nintendo Switch').slice(0, 6)
+        PC: filteredGames.filter(game => game.platform === 'PC').slice(0, 6),
+        PlayStation: filteredGames.filter(game => game.platform === 'PlayStation').slice(0, 6),
+        Xbox: filteredGames.filter(game => game.platform === 'Xbox').slice(0, 6),
+        Switch: filteredGames.filter(game => game.platform === 'Nintendo Switch').slice(0, 6)
     };
 
     const calculateDiscountedPrice = (price, discount) => {
-        const discountedPrice = price * (1- discount);
+        const discountedPrice = price * (1 - discount);
         return discountedPrice.toFixed(2); // Round to 2 decimal places
     };
 
