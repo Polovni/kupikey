@@ -1,9 +1,15 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-import './Cart.css'; // Make sure to create this file for styling
+import './Cart.css';
 
 const Cart = () => {
     const { cart, removeFromCart } = useContext(CartContext);
+    const navigate = useNavigate();
+
+    const handleCheckout = () => {
+        navigate('/payment');
+    };
 
     return (
         <div>
@@ -21,6 +27,9 @@ const Cart = () => {
                     </div>
                 ))}
             </div>
+            {cart.length > 0 && (
+                <button onClick={handleCheckout} className="checkout-button">Proceed to Checkout</button>
+            )}
         </div>
     );
 };

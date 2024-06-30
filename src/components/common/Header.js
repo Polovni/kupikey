@@ -19,10 +19,12 @@ const Header = () => {
     return (
         <nav className="header">
             <div className="header-left">
-                <div className="header-logo">
-                    <img src={logo} alt="site logo" />
-                </div>
-                <span className="header-title">Kupi Key</span>
+                <Link to="/" className="header-logo-link">
+                    <div className="header-logo">
+                        <img src={logo} alt="site logo" />
+                    </div>
+                    <span className="header-title">Kupi Key</span>
+                </Link>
             </div>
             <ul className="navbar-links">
                 <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('pc'); }}>PC</Link></li>
