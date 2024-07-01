@@ -22,6 +22,11 @@ const GameDetail = () => {
         getGame();
     }, [id]);
 
+    const calculateDiscountedPrice = (price, discount) => {
+        const discountedPrice = price * (1 - discount);
+        return discountedPrice.toFixed(2); // Round to 2 decimal places
+    };
+
     if (!game) return <div>Loading...</div>;
 
     return (
@@ -31,7 +36,7 @@ const GameDetail = () => {
                 <h2>{game.name}</h2>
                 <img src={game.image_url} alt={`${game.name} cover`} />
                 <div className="game-price-discount">
-                    <div className="price">${game.price}</div>
+                    <div className="price">${calculateDiscountedPrice(game.price, game.discount)}</div>
                     <div className="discount">{game.discount * 100}% off</div>
                 </div>
                 <button onClick={() => addToCart(game)} className="add-to-cart-button">Add to Cart</button>

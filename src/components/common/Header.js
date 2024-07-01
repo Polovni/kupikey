@@ -7,7 +7,7 @@ import './Header.css';
 import { CartContext } from '../../context/CartContext';
 
 const Header = ({ searchQuery, setSearchQuery }) => {
-    const { cart } = useContext(CartContext); // Access cart from CartContext
+    const { cart } = useContext(CartContext);
 
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
@@ -27,10 +27,10 @@ const Header = ({ searchQuery, setSearchQuery }) => {
                 </Link>
             </div>
             <ul className="navbar-links">
-                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('pc'); }}>PC</Link></li>
-                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('playstation'); }}>PLAYSTATION</Link></li>
-                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('xbox'); }}>XBOX</Link></li>
-                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('nintendo'); }}>NINTENDO</Link></li>
+                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('pc-section'); }}>PC</Link></li>
+                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('playstation-section'); }}>PLAYSTATION</Link></li>
+                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('xbox-section'); }}>XBOX</Link></li>
+                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('nintendo-section'); }}>NINTENDO</Link></li>
             </ul>
             <div className="header-right">
                 <input

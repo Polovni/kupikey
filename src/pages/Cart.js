@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaTrashCan } from 'react-icons/fa6'; // Correct import
+import { FaTrashCan } from 'react-icons/fa6';
 import { CartContext } from '../context/CartContext';
 import './Cart.css';
 
@@ -13,7 +13,15 @@ const Cart = () => {
     };
 
     const calculateTotal = () => {
+        return cart.reduce((total, game) => total + game.price * (1 - game.discount), 0).toFixed(2);
+    };
+
+    const calculateOriginalTotal = () => {
         return cart.reduce((total, game) => total + game.price, 0).toFixed(2);
+    };
+
+    const calculateTotalDiscount = () => {
+        return cart.reduce((total, game) => total + game.price * game.discount, 0).toFixed(2);
     };
 
     return (
@@ -38,11 +46,11 @@ const Cart = () => {
             </div>
             <div className="summary">
                 <h2>Summary</h2>
-                <p>Official price: 39.99€</p>
-                <p>Discount: 25.36€</p>
+                <p>Official price: {calculateOriginalTotal()}€</p>
+                <p>Discount: {calculateTotalDiscount()}€</p>
                 <p>Subtotal: {calculateTotal()}€</p>
                 <button onClick={handleCheckout} className="checkout-button">Go to payment</button>
-                <p><a href="/shop" className="continue-shopping">Continue shopping</a></p>
+                <p><a href="/" className="continue-shopping">Continue shopping</a></p>
             </div>
         </div>
     );
