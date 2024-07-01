@@ -4,7 +4,7 @@ import { CartContext } from '../context/CartContext';
 import './Payment.css';
 
 const Checkout = () => {
-    const { cart } = useContext(CartContext);
+    const { cart, clearCart } = useContext(CartContext);
     const [isFormValid, setIsFormValid] = useState(false);
     const [billingInfo, setBillingInfo] = useState({
         name: '',
@@ -46,6 +46,7 @@ const Checkout = () => {
         e.preventDefault();
         setShowNotification(true);
         setTimeout(() => {
+            clearCart();
             setShowNotification(false);
             navigate('/');
         }, 3000); // 3 seconds
