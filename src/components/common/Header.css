@@ -1,12 +1,12 @@
 .header {
-    background-color: #054ADA; /* Blue background to match the image */
+    background-color: #054ADA; 
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #fff; /* Ensuring text color is white */
-    position: relative; /* Ensure position relative for dropdown menu */
-    z-index: 1000; /* Ensure the header stays above other elements */
+    color: #fff; 
+    position: relative; 
+    z-index: 1000; 
 }
 
 .header-left {
@@ -22,7 +22,7 @@
 }
 
 .header-logo img {
-    height: 50px; /* Adjust the height as needed */
+    height: 50px;
 }
 
 .header-title {
@@ -34,70 +34,64 @@
 .navbar-links {
     list-style: none;
     display: flex;
-    gap: 2rem; /* Increased gap between links */
-    margin: 0; /* Ensuring no margin */
-    padding: 0; /* Ensuring no padding */
+    gap: 2rem; 
+    margin: 0; 
+    padding: 0; 
 }
 
 .navbar-links li a {
-    color: #fff; /* Changing link color to white */
+    color: #fff; 
     text-decoration: none;
-    font-size: 1.2rem; /* Slightly larger font size */
-    font-family: 'Arial', sans-serif; /* Using a cleaner font */
+    font-size: 1.2rem; 
+    font-family: 'Arial', sans-serif;
 }
 
 .navbar-links li a:hover {
-    color: #EC622D; /* Changing hover color to orange */
+    color: #EC622D;
 }
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Gap between icons */
+    gap: 1rem;
+}
+
+.search-bar-container {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.search-bar-container.active {
+    height: 50px;
+    padding: 10px 0;
 }
 
 .search-bar {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: none;
+    width: 80%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box; /* Ensure padding is included in width */
-    animation: slideDown 0.3s ease-in-out;
 }
 
-@keyframes slideDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.search-bar-overlay {
-    position: absolute;
-    top: 60px; /* Adjust based on header height */
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    animation: slideDown 0.3s ease-in-out;
+.search-button,
+.menu-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .icon-link {
-    color: #fff;
-    font-size: 1.2rem; /* Slightly larger icons */
-    text-decoration: none;
-    position: relative; /* Needed for the cart count badge positioning */
-}
-
-.icon-link:hover {
-    color: #ff7f00; /* Changing icon hover color to orange */
+    color: inherit;
+    position: relative;
 }
 
 .cart-count {
@@ -107,39 +101,12 @@
     background-color: red;
     color: white;
     border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.8rem;
+    width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    z-index: 1000;
-    animation: fadeinout 2s forwards;
-}
-
-@keyframes fadeinout {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-.menu-button,
-.search-button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
+    font-size: 12px;
 }
 
 .overlay {
@@ -193,7 +160,7 @@
 }
 
 .navbar-links li a {
-    text-decoration: none; /* Remove underline */
+    text-decoration: none;
 }
 
 .profile-link-mobile {
@@ -206,7 +173,7 @@
     }
 
     .header-right .profile-icon {
-        display: none; /* Hide profile icon on mobile */
+        display: none;
     }
 
     .header-right {
@@ -243,7 +210,7 @@
     }
 
     .header-right .profile-icon {
-        display: block; /* Show profile icon on desktop */
+        display: block;
     }
 
     .header-logo-link {
