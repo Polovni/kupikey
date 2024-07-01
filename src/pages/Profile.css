@@ -33,3 +33,21 @@
 .logout-button:hover {
     background-color: #c82333;
 }
+
+/* Media Query for Mobile View */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 1rem; /* Adjust padding for mobile view */
+        margin: 1rem; /* Adjust margin for mobile view */
+    }
+
+    .profile-details {
+        font-size: 1rem; /* Adjust font size for mobile view */
+    }
+
+    .logout-button {
+        width: 100%; /* Make the logout button full width on mobile */
+        font-size: 14px; /* Adjust font size for mobile view */
+        padding: 12px; /* Adjust padding for mobile view */
+    }
+}

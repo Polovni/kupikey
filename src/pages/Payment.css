@@ -116,3 +116,30 @@ form input {
     font-size: 1.2rem;
     color: black; /* Ensure text color is set to be visible */
 }
+
+/* Media Query for Mobile View */
+@media (max-width: 768px) {
+    .checkout-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .checkout-form {
+        padding-right: 0;
+        margin-bottom: 2rem;
+        width: 90%;
+    }
+
+    .summary {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    form input {
+        padding: 0.5rem;
+    }
+
+    .summary p {
+        font-size: 1rem;
+    }
+}
