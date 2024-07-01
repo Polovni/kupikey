@@ -1,12 +1,12 @@
 .header {
-    background-color: #054ADA; 
+    background-color: #054ADA; /* Blue background to match the image */
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #fff; 
-    position: relative; 
-    z-index: 1000; 
+    color: #fff; /* Ensuring text color is white */
+    position: relative; /* Ensure position relative for dropdown menu */
+    z-index: 1000; /* Ensure the header stays above other elements */
 }
 
 .header-left {
@@ -22,7 +22,7 @@
 }
 
 .header-logo img {
-    height: 50px;
+    height: 50px; /* Adjust the height as needed */
 }
 
 .header-title {
@@ -34,31 +34,32 @@
 .navbar-links {
     list-style: none;
     display: flex;
-    gap: 2rem; 
-    margin: 0; 
-    padding: 0; 
+    gap: 2rem; /* Increased gap between links */
+    margin: 0; /* Ensuring no margin */
+    padding: 0; /* Ensuring no padding */
 }
 
 .navbar-links li a {
-    color: #fff; 
+    color: #fff; /* Changing link color to white */
     text-decoration: none;
-    font-size: 1.2rem; 
-    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem; /* Slightly larger font size */
+    font-family: 'Arial', sans-serif; /* Using a cleaner font */
+    transition: color 0.3s ease; /* Smooth transition for link color */
 }
 
 .navbar-links li a:hover {
-    color: #EC622D;
+    color: #EC622D; /* Changing hover color to orange */
 }
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1rem; /* Gap between icons */
 }
 
 .search-bar-container {
     width: 100%;
-    background-color: #fff;
+    background-color: #fff; /* Adjust as necessary */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,12 +69,12 @@
 }
 
 .search-bar-container.active {
-    height: 50px;
+    height: 50px; /* Adjust height as necessary */
     padding: 10px 0;
 }
 
 .search-bar {
-    width: 80%;
+    width: 80%; /* Adjust as necessary */
     padding: 8px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -87,11 +88,18 @@
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
+    transition: color 0.3s ease; /* Smooth transition for button color */
 }
 
 .icon-link {
-    color: inherit;
+    color: inherit; /* Ensure icons retain the inherited color */
     position: relative;
+    transition: color 0.3s ease; /* Smooth transition for icon color */
+}
+
+.icon-link:hover,
+.search-button:hover {
+    color: #EC622D; /* Orange hover color for icons and search button */
 }
 
 .cart-count {
@@ -156,11 +164,10 @@
     width: 100%;
     text-align: center;
     padding: 1rem 0;
-    border-bottom: 1px solid #fff;
 }
 
 .navbar-links li a {
-    text-decoration: none;
+    text-decoration: none; /* Remove underline */
 }
 
 .profile-link-mobile {
@@ -173,7 +180,7 @@
     }
 
     .header-right .profile-icon {
-        display: none;
+        display: none; /* Hide profile icon on mobile */
     }
 
     .header-right {
@@ -210,7 +217,7 @@
     }
 
     .header-right .profile-icon {
-        display: block;
+        display: block; /* Show profile icon on desktop */
     }
 
     .header-logo-link {
