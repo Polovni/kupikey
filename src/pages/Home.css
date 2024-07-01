@@ -1,49 +1,75 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
 .game-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the game items horizontally */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Center the game items horizontally */
+}
+
+.game-item {
+  width: 30%;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 10px; /* Adjusted left margin for centering */
+  text-align: center;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.game-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.game-item img {
+  width: 100%; /* Adjusted image width */
+  border-radius: 5px;
+}
+
+.game-item h3 {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: left;
+  display: inline-block;
+  width: 70%;
+}
+
+.game-item .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: right;
+  display: inline-block;
+  width: 30%;
+}
+
+@media (max-width: 768px) {
+  .game-list {
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Allows horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on mobile */
   }
-  
+
   .game-item {
-    width: 30%;
-    margin-bottom: 20px;
-    margin-right: 10px;
-    margin-left: 10px; /* Adjusted left margin for centering */
+    width: 80%; /* Adjusted width for mobile view */
+    flex: 0 0 auto; /* Prevent shrinking */
+    margin: 10px;
   }
-  
-  .game-item:last-child {
-    margin-right: 0; /* Remove margin from the last game item in a row */
+}
+
+@media (max-width: 576px) {
+  .game-item {
+    width: 80%; /* Further adjustment for smaller screens */
+    flex: 0 0 auto; /* Prevent shrinking */
+    margin: 10px;
   }
-  
-  .game-item a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .game-item img {
-    width: 80%; /* Adjusted image width */
-    border-radius: 5px;
-  }
-  
-  .game-item h3 {
-    margin-top: 10px;
-    font-size: 1.2rem;
-  }
-  
-  .game-item p {
-    margin-top: 5px;
-    font-size: 1rem;
-  }
-  
-  @media (max-width: 768px) {
-    .game-item {
-      width: 45%;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .game-item {
-      width: 100%;
-    }
-  }
-  
+}
+
+h2 {
+  margin-left: 20px;
+}

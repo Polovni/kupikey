@@ -44,9 +44,10 @@ const Home = ({ searchQuery }) => {
                     <div key={game.id} className="game-item">
                         <Link to={`/game/${game.id}`}>
                             <img src={game.image_url} alt={`${game.name} cover`} />
-                            <h3>{game.name}</h3>
-                            <p>{game.platform}</p>
-                            <p>${calculateDiscountedPrice(game.price, game.discount)}</p>
+                            <div>
+                                <h3>{game.name}</h3>
+                                <div className="price">${calculateDiscountedPrice(game.price, game.discount)}</div>
+                            </div>
                         </Link>
                     </div>
                 ))}
@@ -59,9 +60,10 @@ const Home = ({ searchQuery }) => {
                             <div key={game.id} className="game-item">
                                 <Link to={`/game/${game.id}`}>
                                     <img src={game.image_url} alt={`${game.name} cover`} />
-                                    <h3>{game.name}</h3>
-                                    <p>{game.platform}</p>
-                                    <p>${calculateDiscountedPrice(game.price, game.discount)}</p>
+                                    <div>
+                                        <h3>{game.name}</h3>
+                                        <div className="price">${calculateDiscountedPrice(game.price, game.discount)}</div>
+                                    </div>
                                 </Link>
                             </div>
                         ))}
