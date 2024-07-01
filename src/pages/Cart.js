@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaTrashCan } from 'react-icons/fa6';
 import { CartContext } from '../context/CartContext';
 import './Cart.css';
@@ -49,8 +49,16 @@ const Cart = () => {
                 <p>Official price: {calculateOriginalTotal()}€</p>
                 <p>Discount: {calculateTotalDiscount()}€</p>
                 <p>Subtotal: {calculateTotal()}€</p>
-                <button onClick={handleCheckout} className="checkout-button">Go to payment</button>
-                <p><a href="/" className="continue-shopping">Continue shopping</a></p>
+                <button 
+                    onClick={handleCheckout} 
+                    className="checkout-button" 
+                    disabled={cart.length === 0}
+                >
+                    Go to payment
+                </button>
+                <p>
+                    <Link to="/" className="continue-shopping">Continue shopping</Link>
+                </p>
             </div>
         </div>
     );
