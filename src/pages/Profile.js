@@ -5,6 +5,7 @@ import './Profile.css';
 
 const Profile = () => {
     const [user, setUser] = useState(null);
+    const [purchases, setPurchases] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -12,8 +13,22 @@ const Profile = () => {
             const { data, error } = await supabase.auth.getUser();
             if (data) {
                 setUser(data.user);
+                fetchPurchases(data.user.id); // Fetch purchases after getting user data
             } else {
                 console.error(error);
+            }
+        };
+
+        const fetchPurchases = async (userId) => {
+            const { data, error } = await supabase
+                .from('purchases')
+                .select('*')
+                .eq('user_id', userId);
+            
+            if (error) {
+                console.error('Error fetching purchases:', error.message);
+            } else {
+                setPurchases(data); // Set purchases in state
             }
         };
 
@@ -40,6 +55,24 @@ const Profile = () => {
                 <p><strong>Email:</strong> {user.email}</p>
                 <p><strong>ID:</strong> {user.id}</p>
             </div>
+
+            <div className="purchases-container">
+                <h2>Your Purchases</h2>
+                {purchases.length > 0 ? (
+                    <div className="purchases-list">
+                        {purchases.map((purchase) => (
+                            <div key={purchase.id} className="purchase-item">
+                                <h3>{purchase.game_name}</h3>
+                                <p><strong>Platform:</strong> {purchase.platform}</p>
+                                <p><strong>Activation Code:</strong> {purchase.activation_code}</p>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <p>You haven't purchased any games yet.</p>
+                )}
+            </div>
+
             <button onClick={handleLogout} className="logout-button">Log Out</button>
         </div>
     );

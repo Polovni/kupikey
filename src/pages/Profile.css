@@ -19,6 +19,47 @@
     color: #333;
 }
 
+.purchases-container {
+    margin-top: 2rem;
+}
+
+.purchases-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid for purchase items */
+    gap: 1.5rem; /* Space between items */
+}
+
+.purchase-item {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.purchase-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.purchase-item p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.purchase-item strong {
+    color: #555;
+}
+
+.purchase-item .activation-code {
+    font-family: monospace; /* Use monospace for activation codes */
+    background-color: #e9ecef;
+    padding: 0.4rem;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
 .logout-button {
     padding: 10px 20px;
     background-color: #dc3545;
@@ -28,6 +69,9 @@
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .logout-button:hover {
@@ -37,17 +81,25 @@
 /* Media Query for Mobile View */
 @media (max-width: 768px) {
     .profile-container {
-        padding: 1rem; /* Adjust padding for mobile view */
-        margin: 1rem; /* Adjust margin for mobile view */
+        padding: 1rem;
+        margin: 1rem;
     }
 
     .profile-details {
-        font-size: 1rem; /* Adjust font size for mobile view */
+        font-size: 1rem;
     }
 
     .logout-button {
-        width: 100%; /* Make the logout button full width on mobile */
-        font-size: 14px; /* Adjust font size for mobile view */
-        padding: 12px; /* Adjust padding for mobile view */
+        width: 100%;
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .purchases-list {
+        grid-template-columns: 1fr; /* Stack purchase items in one column on mobile */
+    }
+
+    .purchase-item {
+        padding: 1rem;
     }
 }

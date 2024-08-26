@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import { supabase } from '../supabaseClient';
 import './Payment.css';
 
 const Checkout = () => {
@@ -19,7 +20,6 @@ const Checkout = () => {
         expiry: '',
         cvv: '',
     });
-    const [showNotification, setShowNotification] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -42,14 +42,37 @@ const Checkout = () => {
         return cart.reduce((total, game) => total + game.price * (1 - game.discount), 0).toFixed(2);
     };
 
-    const handleSubmit = (e) => {
+    // Function to save purchase data in Supabase
+    const savePurchases = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        
+        const purchasePromises = cart.map(game => {
+            return supabase.from('purchases').insert({
+                user_id: user.id,
+                game_name: game.name,
+                platform: game.platform,
+                activation_code: generateActivationCode() // Mock activation code
+            });
+        });
+
+        try {
+            await Promise.all(purchasePromises); // Wait for all purchases to be inserted
+            console.log('Purchases saved successfully.');
+        } catch (error) {
+            console.error('Error saving purchases:', error.message);
+        }
+    };
+
+    // Mock function to generate a fake activation code
+    const generateActivationCode = () => {
+        return `KEY-${Math.random().toString(36).substring(2, 15).toUpperCase()}`;
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setShowNotification(true);
-        setTimeout(() => {
-            clearCart();
-            setShowNotification(false);
-            navigate('/');
-        }, 3000); // 3 seconds
+        await savePurchases(); // Save purchases before clearing the cart
+        clearCart();
+        navigate('/profile'); // Redirect to profile page instead of home
     };
 
     return (
@@ -122,13 +145,6 @@ const Checkout = () => {
                     Place Order
                 </button>
             </div>
-            {showNotification && (
-                <div className="notification-overlay">
-                    <div className="notification">
-                        <p>Your digital products will be sent to your email address.</p>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

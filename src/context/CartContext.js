@@ -4,19 +4,10 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
-    const [notification, setNotification] = useState('');
+    const [purchases, setPurchases] = useState([]);
 
     const addToCart = (game) => {
-        const isGameInCart = cart.some(cartItem => cartItem.id === game.id);
-
-        if (isGameInCart) {
-            setNotification('Game is already in the cart');
-            setTimeout(() => setNotification(''), 2000);
-        } else {
-            setCart(prevCart => [...prevCart, game]);
-            setNotification('Game added to cart');
-            setTimeout(() => setNotification(''), 2000);
-        }
+        setCart(prevCart => [...prevCart, game]);
     };
 
     const removeFromCart = (gameId) => {
@@ -27,8 +18,22 @@ export const CartProvider = ({ children }) => {
         setCart([]);
     };
 
+    const generateActivationCode = () => {
+        return Math.random().toString(36).substring(2, 15).toUpperCase();
+    };
+
+    const finalizePurchase = () => {
+        const purchasedGames = cart.map(game => ({
+            ...game,
+            activationCode: generateActivationCode(),
+        }));
+        
+        setPurchases([...purchases, ...purchasedGames]);
+        clearCart(); // Clear cart after purchase
+    };
+
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, notification }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, purchases, finalizePurchase }}>
             {children}
         </CartContext.Provider>
     );
