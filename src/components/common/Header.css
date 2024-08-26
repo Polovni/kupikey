@@ -44,6 +44,7 @@
     text-decoration: none;
     font-size: 1.2rem; /* Slightly larger font size */
     font-family: 'Arial', sans-serif; /* Using a cleaner font */
+    transition: color 0.3s ease; /* Smooth transition for link color */
 }
 
 .navbar-links li a:hover {
@@ -56,48 +57,49 @@
     gap: 1rem; /* Gap between icons */
 }
 
+.search-bar-container {
+    width: 100%;
+    background-color: #fff; /* Adjust as necessary */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.search-bar-container.active {
+    height: 50px; /* Adjust height as necessary */
+    padding: 10px 0;
+}
+
 .search-bar {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: none;
+    width: 80%; /* Adjust as necessary */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box; /* Ensure padding is included in width */
-    animation: slideDown 0.3s ease-in-out;
 }
 
-@keyframes slideDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.search-bar-overlay {
-    position: absolute;
-    top: 60px; /* Adjust based on header height */
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    animation: slideDown 0.3s ease-in-out;
+.search-button,
+.menu-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Smooth transition for button color */
 }
 
 .icon-link {
-    color: #fff;
-    font-size: 1.2rem; /* Slightly larger icons */
-    text-decoration: none;
-    position: relative; /* Needed for the cart count badge positioning */
+    color: inherit; /* Ensure icons retain the inherited color */
+    position: relative;
+    transition: color 0.3s ease; /* Smooth transition for icon color */
 }
 
-.icon-link:hover {
-    color: #ff7f00; /* Changing icon hover color to orange */
+.icon-link:hover,
+.search-button:hover {
+    color: #EC622D; /* Orange hover color for icons and search button */
 }
 
 .cart-count {
@@ -107,39 +109,12 @@
     background-color: red;
     color: white;
     border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.8rem;
+    width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    z-index: 1000;
-    animation: fadeinout 2s forwards;
-}
-
-@keyframes fadeinout {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-.menu-button,
-.search-button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
+    font-size: 12px;
 }
 
 .overlay {
@@ -189,7 +164,6 @@
     width: 100%;
     text-align: center;
     padding: 1rem 0;
-    border-bottom: 1px solid #fff;
 }
 
 .navbar-links li a {
