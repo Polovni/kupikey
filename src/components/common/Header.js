@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faUser, faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../assets/images/Image 3.png';
@@ -10,6 +10,7 @@ const Header = ({ searchQuery, setSearchQuery }) => {
     const { cart } = useContext(CartContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -19,11 +20,10 @@ const Header = ({ searchQuery, setSearchQuery }) => {
         setIsSearchOpen(!isSearchOpen);
     };
 
-    const scrollToSection = (id) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
+    const handleNavigation = (sectionId) => {
+        // Navigate to the home page with the section ID as state
+        navigate('/', { state: { sectionId } });
+        setIsMenuOpen(false); // Close the menu after navigation
     };
 
     return (
@@ -40,10 +40,10 @@ const Header = ({ searchQuery, setSearchQuery }) => {
                 </Link>
             </div>
             <ul className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
-                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('pc-section'); }}>PC</Link></li>
-                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('playstation-section'); }}>PLAYSTATION</Link></li>
-                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('xbox-section'); }}>XBOX</Link></li>
-                <li><Link to="/" onClick={(e) => { e.preventDefault(); scrollToSection('nintendo-section'); }}>NINTENDO</Link></li>
+                <li><Link to="/" onClick={(e) => { e.preventDefault(); handleNavigation('pc-section'); }}>PC</Link></li>
+                <li><Link to="/" onClick={(e) => { e.preventDefault(); handleNavigation('playstation-section'); }}>PLAYSTATION</Link></li>
+                <li><Link to="/" onClick={(e) => { e.preventDefault(); handleNavigation('xbox-section'); }}>XBOX</Link></li>
+                <li><Link to="/" onClick={(e) => { e.preventDefault(); handleNavigation('nintendo-section'); }}>NINTENDO</Link></li>
                 <li className="profile-link-mobile"><Link to="/profile">PROFILE</Link></li> {/* Profile link for mobile view */}
             </ul>
             <div className="header-right">

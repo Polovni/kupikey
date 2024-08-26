@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { fetchGames } from '../services/gameService';
 import './Home.css';
 
 const Home = ({ searchQuery }) => {
     const [games, setGames] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
         const getGames = async () => {
@@ -18,6 +19,25 @@ const Home = ({ searchQuery }) => {
 
         getGames();
     }, []);
+
+    // Handle scroll to section when navigating to the home page
+    useEffect(() => {
+        if (location.state && location.state.sectionId) {
+            const sectionId = location.state.sectionId;
+
+            // Delay scrolling to allow the DOM to fully render
+            setTimeout(() => {
+                const sectionElement = document.getElementById(sectionId);
+
+                if (sectionElement) {
+                    sectionElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 300); // Adjust the delay if necessary
+
+            // Clear the state after scrolling
+            window.history.replaceState({}, document.title);
+        }
+    }, [location.state]);
 
     const filteredGames = games.filter(game =>
         game.name.toLowerCase().includes(searchQuery.toLowerCase())
